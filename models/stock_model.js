@@ -11,8 +11,12 @@ const StockSchema=mongoose.Schema(
             required:true
         },
         quantity:{
-            type:String,
+            type:Number,
             required:true,
+        },
+        produit:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Produit'
         },
         priceachat:{
             type:String,
@@ -20,7 +24,7 @@ const StockSchema=mongoose.Schema(
         },
         lieu:{
             type:String,
-            required:true,
+            required:false,
         },
         createdAt:{
             type:String,

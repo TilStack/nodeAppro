@@ -8,15 +8,15 @@ const FactureSchema=mongoose.Schema(
         },        
         taxe:{
             type: String,
-            required: true
+            required: false
         },
         fraislivraison:{
             type:String,
-            required:false
+            required:true
         },
         numero:{
-            type: Number,
-            required: false
+            type: String,
+            required: true
         },
         date:{
             type:String,

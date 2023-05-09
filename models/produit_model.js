@@ -16,7 +16,7 @@ const ProduitSchema=mongoose.Schema(
         },
         code_barre:{
             type: String,
-            required: true,
+            required: false,
         },
         prixAchat:{
             type: String,
@@ -26,11 +26,7 @@ const ProduitSchema=mongoose.Schema(
             type:String,
             required:false
         },
-        stock:{
-            type:String,
-            required:false,
-        },
-        status:{
+        statut:{
             type:Boolean,
             required:true,
             default:false
