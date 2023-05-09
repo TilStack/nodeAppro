@@ -7,9 +7,23 @@ app.use(bodyParser.json())
 require('dotenv/config')
 
 const userRoute=require("./routes/user_route")
+const commandeRoute=require("./routes/commande_route")
+const factureRoute=require("./routes/facture_route")
+const approvisionnementRoute=require("./routes/approvisionnement_route")
+const produitRoute=require("./routes/produit_route")
+const stockRoute=require("./routes/stock_route")
+const rapportRoute=require("./routes/rapport_route")
+const fournisseurRoute=require("./routes/fournisseur_route")
 
 //Using the route by app.use
 app.use("/user",userRoute)
+app.use("/commande",commandeRoute)
+app.use("/facture",factureRoute)
+app.use("/approvisionnement",approvisionnementRoute)
+app.use("/produit",produitRoute)
+app.use("/stock",stockRoute)
+app.use("/rapport",rapportRoute)
+app.use("/fournisseur",fournisseurRoute)
 
 
 app.get('/',(req,res)=>{
