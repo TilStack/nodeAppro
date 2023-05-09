@@ -6,6 +6,10 @@ const bodyParser= require("body-parser")
 app.use(bodyParser.json())
 require('dotenv/config')
 
+const userRoute=require("./routes/user_route")
+
+//Using the route by app.use
+app.use("/user",userRoute)
 
 
 app.get('/',(req,res)=>{
@@ -20,7 +24,7 @@ mongoose.connect(process.env.DB_CONNECTION,
     ).catch((err) =>
     {
       console.error(err);
-      console.log("Not connected");
+      console.log("Not connected")
     }
 );
 
