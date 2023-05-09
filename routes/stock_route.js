@@ -14,7 +14,7 @@ router.get('/',async (req,res)=>{
     res.json({message:error})
     console.log("Error")
   }
-});
+})
 
 //Get stock by Id
 router.get('/:Id',async (req,res)=>{
@@ -26,7 +26,7 @@ router.get('/:Id',async (req,res)=>{
     res.json({message:error})
     console.log("Error")
   }
-});
+})
 
 //Save stock
 router.post('/register',async (req,res)=>{
@@ -86,7 +86,7 @@ router.delete("/:Id",async (req,res)=>{
     res.json({message:err})
     console.log("Error")
   }
-});
+})
 
 
 //Generate stock

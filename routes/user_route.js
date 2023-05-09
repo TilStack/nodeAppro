@@ -17,7 +17,7 @@ router.get('/',async (req,res)=>{
     res.json({message:error})
     console.log("Error")
   }
-});
+})
 
 //Get User by Id
 router.get('/:Id',async (req,res)=>{
@@ -29,7 +29,7 @@ router.get('/:Id',async (req,res)=>{
     res.json({message:error})
     console.log("Error")
   }
-});
+})
 
 //Save User
 router.post('/register', (req, res, next) => {
