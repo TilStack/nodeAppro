@@ -5,7 +5,11 @@ const RapportSchema=mongoose.Schema(
         _id:{
             type: mongoose.Schema.Types.ObjectId,
             auto: true
-        },        
+        },  
+        number:{
+            type:String,
+            required:true,
+        }   ,   
         stock:           
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -15,10 +19,6 @@ const RapportSchema=mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Commande'
         }],
-        quantity:{
-            type:String,
-            required:true
-        },
         createdAt:{
             type: String,
             default: Date.now,

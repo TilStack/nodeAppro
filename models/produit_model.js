@@ -14,17 +14,13 @@ const ProduitSchema=mongoose.Schema(
             type: String,
             required: true,
         },
-        code_barre:{
-            type: String,
-            required: false,
-        },
-        prixAchat:{
-            type: String,
+        price:{
+            type: Number,
             required: true,
         },
-        prixVente:{
-            type:String,
-            required:false
+        quantity:{
+            type:Number,
+            required:true
         },
         statut:{
             type:Boolean,

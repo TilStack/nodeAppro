@@ -9,22 +9,14 @@ const StockSchema=mongoose.Schema(
         date:{
             type:String,
             required:true
+        },        
+        nomProduit:{
+            type:String,
+            required:true
         },
-        quantity:{
+        quantite:{
             type:Number,
             required:true,
-        },
-        produit:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Produit'
-        },
-        priceachat:{
-            type:String,
-            required:true,
-        },
-        lieu:{
-            type:String,
-            required:false,
         },
         createdAt:{
             type:String,

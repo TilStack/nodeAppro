@@ -1,16 +1,14 @@
 const faker = require('faker')
 
 
-function generatestock(objects1) {
+function generatestock() {
     console.log('------------------------');
-    const randomproduit=faker.random.arrayElement(objects1)
     const stock= {
         date:faker.date.recent(),
-        quantity: 0,        
-        produit:randomproduit._id,
-        priceachat: faker.finance.amount(20000,100000,2),       
+        quantite: 0,        
+        nomproduit:faker.commerce.productName(),       
         createdAt:faker.date.recent(),
-    };
+    }
     return stock
 }
 
