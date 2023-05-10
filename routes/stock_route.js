@@ -94,11 +94,11 @@ router.post('/generate',async (req,res)=>{
   try {    
     const newS=new Stock(generatestock())
     await newS.save()
-    res.json(newU)
+    res.json(newS)
     console.log('--stock enregistrer--')
   } catch (error) {
     console.log(error)
   }
 })
 
-module.exports=router;
+module.exports=router

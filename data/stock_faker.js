@@ -1,9 +1,9 @@
-const faker = require('faker');
+const faker = require('faker')
 
 
 function generatestock(objects1) {
     console.log('------------------------');
-    const randomproduit=faker.random.arrayElement(objects1);
+    const randomproduit=faker.random.arrayElement(objects1)
     const stock= {
         date:faker.date.recent(),
         quantity: 0,        
@@ -11,7 +11,7 @@ function generatestock(objects1) {
         priceachat: faker.finance.amount(20000,100000,2),       
         createdAt:faker.date.recent(),
     };
-    return stock;
+    return stock
 }
 
-module.exports = generatestock;
+module.exports = generatestock

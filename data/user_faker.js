@@ -1,15 +1,15 @@
-const faker = require('faker');
+const faker = require('faker')
 
 function generateUser(pass) {
-    console.log('------------------------');
+    console.log('------------------------')
     const user= {
         name: faker.name.lastName(),
         password: pass,
         email: faker.internet.email(), 
         role:"other",      
         createdAt:faker.date.recent(),
-    };
-    return user;
+    }
+    return user
 }
 
-module.exports = generateUser;
+module.exports = generateUser

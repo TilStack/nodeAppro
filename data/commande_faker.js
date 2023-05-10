@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require('faker')
 
 function generatecommande(objects1,objects2) {
     const quantity=['1','2','3','4','5','6','7','8','9','10']
@@ -18,4 +18,4 @@ function generatecommande(objects1,objects2) {
     return commande
 }
 
-module.exports = generatecommande;
+module.exports = generatecommande

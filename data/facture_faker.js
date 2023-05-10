@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require('faker')
 
 const array=[
     '1%','2%','3%','4%','5%','6%','7%','8%','9%','10%',
@@ -11,7 +11,7 @@ const array=[
     '71%','72%','73%','74%','75%','76%','77%','78%','79%','80%',
     '81%','82%','83%','84%','85%','86%','87%','88%','89%','90%',
     '91%','92%','93%','94%','95%','96%','97%','98%','99%','100%',
-  ];
+  ]
 function generatefacture(objects1) {
     console.log('------------------------');
     const randomcommande=faker.random.arrayElement(objects1);
@@ -23,8 +23,8 @@ function generatefacture(objects1) {
         numero: faker.random.alphaNumeric(12),       
         montant: faker.finance.amount(30000,100000,1.5),
         createdAt:faker.date.recent(),
-    };
-    return facture;
+    }
+    return facture
 }
 
-module.exports = generatefacture;
+module.exports = generatefacture

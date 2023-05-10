@@ -1,8 +1,8 @@
-const faker = require('faker');
+const faker = require('faker')
 
 function generatefournisseur(objects1) {
-    console.log('------------------------');
-    const randomProduit=faker.random.arrayElement(objects1);
+    console.log('------------------------')
+    const randomProduit=faker.random.arrayElement(objects1)
    
     const fournisseur= {
         name: faker.name.lastName(),
@@ -11,8 +11,8 @@ function generatefournisseur(objects1) {
         telephone: faker.phone.phoneNumber(),       
         produits: [randomProduit._id],
         createdAt:faker.date.recent(),
-    };
-    return fournisseur;
+    }
+    return fournisseur
 }
 
-module.exports = generatefournisseur;
+module.exports = generatefournisseur
