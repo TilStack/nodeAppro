@@ -3,6 +3,7 @@ const { async } = require("rxjs")
 const router=express.Router()
 const generatefacture=require("../data/facture_faker")
 const Facture=require("../models/facture_model")
+const Commande=require("../models/commande_model")
 
 //Get all factures
 router.get('/',async (req,res)=>{
@@ -94,7 +95,8 @@ router.delete("/:Id",async (req,res)=>{
 //Generate facture
 router.post('/generate',async (req,res)=>{
   try {    
-    const newR=new Facture(generatefacture())
+    const commande=await Commande.find()
+    const newR=new Facture(generatefacture(commande))
     await newR.save()
     res.json(newR)
     console.log('--facture enregistrer--')

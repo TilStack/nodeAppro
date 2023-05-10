@@ -3,6 +3,8 @@ const { async } = require("rxjs")
 const router=express.Router()
 const generaterapport=require("../data/rapport_faker")
 const Rapport=require("../models/rapport_model")
+const Stock=require("../models/stock_model")
+const Commande=require("../models/commande_model")
 
 //Get all rapports
 router.get('/',async (req,res)=>{
@@ -88,7 +90,9 @@ router.delete("/:Id",async (req,res)=>{
 //Generate rapport
 router.post('/generate',async (req,res)=>{
   try {    
-    const newR=new Rapport(generaterapport())
+    const stock=await Stock.find()
+    const commande=await Commande.find()
+    const newR=new Rapport(generaterapport(stock,commande))
     await newR.save()
     res.json(newR)
     console.log('--rapport enregistrer--')

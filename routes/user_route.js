@@ -3,7 +3,7 @@ const { async } = require("rxjs")
 const bcrypt=require('bcrypt')
 require("dotenv").config()
 const router=express.Router()
-
+const faker=require('faker')
 const User=require("../models/user_model")
 const generateuser = require("../data/user_faker")
 
@@ -141,7 +141,7 @@ router.post('/login',async (req,res)=>{
 
 
 //Delete User
-router.delete("/del/:Id",async (req,res)=>{
+router.delete("/:Id",async (req,res)=>{
   console.log('.....')
   try {
     const removeUser= await User.deleteOne({_id:req.params.Id})
