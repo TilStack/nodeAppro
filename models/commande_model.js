@@ -43,5 +43,5 @@ const CommandeSchema=mongoose.Schema(
     }
 )
 
-const CommandeModel= mongoose.Model('Commande',CommandeSchema)
+const CommandeModel= mongoose.model('Commande',CommandeSchema)
 module.exports=CommandeModel

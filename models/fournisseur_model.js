@@ -35,5 +35,5 @@ const FournisseurSchema=mongoose.Schema(
     }
 )
 
-const FournisseurModel= mongoose.Model('Fournisseur',FournisseurSchema)
+const FournisseurModel= mongoose.model('Fournisseur',FournisseurSchema)
 module.exports=FournisseurModel

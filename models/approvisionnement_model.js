@@ -27,5 +27,5 @@ const ApprovisionnementSchema=mongoose.Schema(
     }
 )
 
-const ApprovisionnementModel= mongoose.Model('Approvisionnement',ApprovisionnementSchema)
+const ApprovisionnementModel= mongoose.model('Approvisionnement',ApprovisionnementSchema)
 module.exports=ApprovisionnementModel

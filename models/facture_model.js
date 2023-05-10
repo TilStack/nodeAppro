@@ -38,5 +38,5 @@ const FactureSchema=mongoose.Schema(
     }
 )
 
-const FactureModel= mongoose.Model('Facture',FactureSchema)
+const FactureModel= mongoose.model('Facture',FactureSchema)
 module.exports=FactureModel

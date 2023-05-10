@@ -26,5 +26,5 @@ const RapportSchema=mongoose.Schema(
     }
 )
 
-const RapportModel= mongoose.Model('Rapport',RapportSchema)
+const RapportModel= mongoose.model('Rapport',RapportSchema)
 module.exports=RapportModel

@@ -33,5 +33,5 @@ const StockSchema=mongoose.Schema(
     }
 )
 
-const StockModel= mongoose.Model('Stock',StockSchema)
+const StockModel= mongoose.model('Stock',StockSchema)
 module.exports=StockModel
