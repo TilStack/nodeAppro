@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const { async } = require("rxjs")
 
 const StockSchema=mongoose.Schema(
     {
@@ -7,14 +8,18 @@ const StockSchema=mongoose.Schema(
             auto: true,
         },
         date:{
-            type:String,
-            required:true
+            type:Date,
         },        
         nomProduit:{
             type:String,
             required:true
         },
-        quantite:{
+        products:{
+            type:Array,
+            default:[],
+            required:false,
+        },
+        quantity:{
             type:Number,
             required:true,
         },
@@ -24,6 +29,19 @@ const StockSchema=mongoose.Schema(
         }
     }
 )
+
+// Méthode pour récupérer le nombre de produits en stock, retirés et encore présents
+StockSchema.statics.getStockSummary = async function () {
+    const total = await this.countDocuments()
+    const retirés = await this.countDocuments({ date: { $exists: true } })
+    const présents = total - retirés
+  
+    return {
+        total,
+        retirés,
+        présents
+    }
+}
 
 const StockModel= mongoose.model('Stock',StockSchema)
 module.exports=StockModel

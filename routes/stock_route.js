@@ -3,6 +3,7 @@ const { async } = require("rxjs")
 const router=express.Router()
 const generatestock=require("../data/stock_faker")
 const Stock=require("../models/stock_model")
+const Produit=require("../models/produit_model")
 
 //Get all stocks
 router.get('/',async (req,res)=>{
@@ -33,9 +34,7 @@ router.post('/register',async (req,res)=>{
   const stock=new Stock({    
     date:req.body.date,
     quantity:req.body.quantity,
-    produit:req.body.produit,
-    priceachat:req.body.priceachat,
-    lieu:req.body.lieu,
+    nomProduit:req.body.nomProduit,
     createdAt:req.body.createdAt
   })
   try {
@@ -57,9 +56,7 @@ router.put('/:Id',async (req,res)=>{
         $set:{
           date:req.body.date,
           quantity:req.body.quantity,
-          produit:req.body.produit,
-          priceachat:req.body.priceachat,
-          lieu:req.body.lieu,
+          nomProduit:req.body.nomProduit,
           createdAt:req.body.createdAt
         }
       },
@@ -98,6 +95,91 @@ router.post('/generate',async (req,res)=>{
     console.log('--stock enregistrer--')
   } catch (error) {
     console.log(error)
+  }
+})
+
+
+// POST route pour ajouter un produit à un stock
+router.post('/:stockId/addProduct', async (req, res) => {
+  try {
+    const { stockId } = req.params
+    const { productId, quantity } = req.body
+
+    const stock = await Stock.findById(stockId)
+
+    if (!stock) {
+      return res.status(404).json({ error: 'Stock not found' })
+    }
+    console.log('--------Pass--------')
+    const product = await Produit.findById(productId)
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' })
+    }
+    console.log('--------Pass--------')
+    if (quantity <= 0) {
+      return res.status(400).json({ error: 'Quantity must be greater than zero' })
+    }
+    console.log('--------Pass--------')
+    stock.products.push({ product: product._id, quantity })
+
+    await stock.save()
+    console.log('-- Product added to stock successfully --')
+    return res.json({ message: 'Product added to stock successfully' })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ error: 'Server error' })
+  }
+})
+
+// POST route pour retirer un produit d'un stock
+router.post('/:stockId/removeProduct', async (req, res) => {
+  try {
+    const { stockId } = req.params;
+    const { productId, quantity } = req.body;
+
+    const stock = await Stock.findById(stockId);
+    console.log('--------Pass--------')
+    if (!stock) {
+      return res.status(404).json({ error: '-- Stock not found-- ' });
+    }
+
+    const productIndex = stock.products.findIndex(
+      (p) => p.product._id.equals(productId))
+    console.log('--------Pass--------'+productIndex)
+    if (productIndex === -1) {
+      return res.status(404).json({ error: '-- Product not found in stock-- ' });
+    }
+
+    const product = stock.products[productIndex];
+    console.log('--------Pass--------')
+    if (product.quantity < quantity) {
+      return res.status(400).json({ error: '-- Not enough quantity in stock--' });
+    }
+
+    product.quantity -= quantity;
+    console.log('--------Pass-------- '+product.quantity)
+    if (product.quantity === 0) {
+      stock.products.splice(productIndex, 1);
+    }
+    console.log('--------Pass--------')
+    await stock.save();
+    console.log('-- Product removed from stock successfully --')
+    return res.json({ message: '-- Product removed from stock successfully --' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+})
+
+// Route pour récupérer le nombre de produits en stock, retirés et encore présents
+router.get('/sum/summary', async (req, res) => {
+  try {
+    const summary = await Stock.getStockSummary()
+    res.json(summary)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Server Error' })
   }
 })
 

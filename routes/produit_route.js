@@ -33,11 +33,10 @@ router.post('/register',async (req,res)=>{
   const produit=new Produit({    
     name:req.body.name,
     description:req.body.description,
-    code_barre:req.body.code_barre,
-    prixAchat:req.body.prixAchat,
-    prixVente:req.body.prixVente,
     statut:req.body.statut,
-    createdAt:req.body.createdAt
+    createdAt:req.body.createdAt,
+    price: req.body.price,
+    quantity: req.body.quantity
   })
   try {
     const savedproduit=await produit.save()
@@ -58,11 +57,10 @@ router.put('/:Id',async (req,res)=>{
         $set:{
           name:req.body.name,
           description:req.body.description,
-          code_barre:req.body.code_barre,
-          prixAchat:req.body.prixAchat,
-          prixVente:req.body.prixVente,
           statut:req.body.statut,
-          createdAt:req.body.createdAt
+          createdAt:req.body.createdAt,
+          price: req.body.price,
+          quantity: req.body.quantity
         }
       },
       {
