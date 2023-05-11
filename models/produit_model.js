@@ -27,6 +27,11 @@ const ProduitSchema=mongoose.Schema(
             required:true,
             default:false
         },
+        fournisseur:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Produit',
+            required:false,
+        },
         createdAt:{
             type:String,
             default:Date.now,

@@ -22,12 +22,6 @@ const FournisseurSchema=mongoose.Schema(
             type: String,
             required: true,
         },
-        produits:[
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Produit'
-            }
-        ],
         createdAt:{
             type: String,
             default: Date.now,

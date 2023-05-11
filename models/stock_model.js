@@ -31,7 +31,7 @@ const StockSchema=mongoose.Schema(
 )
 
 // Méthode pour récupérer le nombre de produits en stock, retirés et encore présents
-StockSchema.statics.getStockSummary = async function () {
+StockSchema.methods.getStockSummary = async function () {
     const total = await this.countDocuments()
     const retirés = await this.countDocuments({ date: { $exists: true } })
     const présents = total - retirés

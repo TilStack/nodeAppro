@@ -134,7 +134,7 @@ router.post('/login',async (req,res)=>{
     console.log('--------------------------5')
     return res.json(user)
   } catch (error) {
-    console.log('--Error--')
+    console.log(error)
   }  
   
 });

@@ -30,6 +30,14 @@ const UserSchema=mongoose.Schema(
         }
     }
 )
+UserSchema.methods.comparePassword= async function (candidatePassword) { 
+    try {
+      const isMatch=await bcrypt.compare(candidatePassword,this.password);
+      return isMatch;
+    } catch (error) {
+      throw new Error(error);
+    }  
+  }
 
 const UserModel= mongoose.model('User',UserSchema)
 module.exports=UserModel
