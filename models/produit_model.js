@@ -29,7 +29,7 @@ const ProduitSchema=mongoose.Schema(
         },
         fournisseur:{
             type:mongoose.Schema.Types.ObjectId,
-            ref:'Produit',
+            ref:'Fournisseur',
             required:false,
         },
         createdAt:{

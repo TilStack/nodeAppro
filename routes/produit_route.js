@@ -3,6 +3,7 @@ const { async } = require("rxjs")
 const router=express.Router()
 const generateproduit=require("../data/produit_faker")
 const Produit=require("../models/produit_model")
+const Fournisseur=require("../models/fournisseur_model")
 
 //Get all produits
 router.get('/',async (req,res)=>{
@@ -91,8 +92,9 @@ router.delete("/:Id",async (req,res)=>{
 
 //Generate produit
 router.post('/generate',async (req,res)=>{
-  try {    
-    const newR=new Produit(generateproduit())
+  try {   
+    const fournisseur=await Fournisseur.find() 
+    const newR=new Produit(generateproduit(fournisseur))
     await newR.save()
     res.json(newR)
     console.log('--produit enregistrer--')

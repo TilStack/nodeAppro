@@ -1,4 +1,6 @@
 const mongoose= require('mongoose')
+const bcrypt=require('bcrypt')
+const { async } = require("rxjs")
 
 const UserSchema=mongoose.Schema(
     {

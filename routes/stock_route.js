@@ -89,7 +89,8 @@ router.delete("/:Id",async (req,res)=>{
 //Generate stock
 router.post('/generate',async (req,res)=>{
   try {    
-    const newS=new Stock(generatestock())
+    const p =await Produit.find();
+    const newS=new Stock(generatestock(p))
     await newS.save()
     res.json(newS)
     console.log('--stock enregistrer--')

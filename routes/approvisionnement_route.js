@@ -1,7 +1,7 @@
 const express= require("express")
 const { async } = require("rxjs")
 const router=express.Router()
-const generateapprovisionnement=require("../data/approvisionnement_faker")
+const generateappro=require("../data/approvisionnement_faker")
 const Approvisionnement=require("../models/approvisionnement_model")
 const Produit=require("../models/produit_model")
 
@@ -90,7 +90,7 @@ router.delete("/:Id",async (req,res)=>{
 router.post('/generate',async (req,res)=>{
   try {    
     const produits=await Produit.find()
-    const newA=new Approvisionnement(generateapprovisionnement(produits))
+    const newA=new Approvisionnement(generateappro(produits))
     await newA.save()
     res.json(newA)
     console.log('--approvisionnement enregistrer--')
